@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Event Listener</title>
+  </head>
+  <body>
+    <div class="keys">
+      <div class="key" data-key="65"><kbd>A</kbd></div>
+      <div class="key" data-key="83"><kbd>S</kbd></div>
+      <div class="key" data-key="68"><kbd>D</kbd></div>
+      <div class="key" data-key="70"><kbd>F</kbd></div>
+      <div class="key" data-key="71"><kbd>G</kbd></div>
+      <div class="key" data-key="72"><kbd>H</kbd></div>
+      <div class="key" data-key="74"><kbd>J</kbd></div>
+      <div class="key" data-key="75"><kbd>K</kbd></div>
+      <div class="key" data-key="76"><kbd>L</kbd></div>
+    </div>
+
+    <audio data-key="65" src="Piano/Beautiful Piano.mp3"></audio>
+    <audio data-key="83" src="Piano/Beautiful-Piano.mp3"></audio>
+    <audio data-key="68" src="Piano/Dramatic-Piano.mp3"></audio>
+    <audio data-key="70" src="Piano/Good_Morning_to_All.mp3"></audio>
+    <audio data-key="71" src="Piano/Piano-Warm-Sentimental.mp3"></audio>
+    <audio data-key="72" src="Piano/Reaching-Out.mp3"></audio>
+    <audio data-key="74" src="Piano/HinaCC0_007_My-museum.mp3"></audio>
+    <audio data-key="75" src="Piano/I-Remember-Everything.mp3"></audio>
+    <audio data-key="76" src="Piano/L's theme.mp3"></audio>
+
+    <script>
+      function stopAllMusic() {
+        let sounds = document.getElementsByTagName("audio");
+        for (i = 0; i < sounds.length; i++) sounds[i].pause();
+      }
+
+      function playMusic(e) {
+        // here i just query through DOM to find 1st audion element with keyCode == data-key
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"`);
+        const keys = document.querySelectorAll(".key");
+        if (!audio) return; //for catching 'unknown' key
+        audio.currentTime = 0; //if I push same button it starts playing from start
+        stopAllMusic();
+        stopAllTransitions(keys);
+        key.classList.add("playing");
+        audio.play();
+      }
+
+      // function removeTransition(e) {
+      //   if (e.propertyName !== "transform") return;
+      //   this.classList.remove("playing");
+      //   console.log(e);
+      // }
+
+      function removeTransition(key) {
+        key.classList.remove("playing");
+      }
+
+      function stopAllTransitions(keys) {
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i];
+          removeTransition(key);
+        }
+      }
+
+      window.addEventListener("keydown", playMusic);
+    </script>
+  </body>
+</html>

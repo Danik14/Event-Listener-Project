@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: auto;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-image: url("https://media2.giphy.com/media/U3qYN8S0j3bpK/giphy.gif?cid=ecf05e47612bwuvvyl2o393j13w6gfdaxzw2h2nw63c6y8ee&rid=giphy.gif&ct=g");
+}
+
+.keys {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.key {
+  border-radius: 3px;
+  height: 110px;
+  width: 110px;
+  margin: 0 15px;
+  border: 5px solid rgb(66, 64, 48);
+  transition: all 0.5s;
+  text-shadow: 0 0 5px purple;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.playing {
+  transform: scale(1.2);
+  border-color: #ffc600;
+  box-shadow: 0 0 5px #ffc600;
+}
+
+@font-face {
+  font-family: Altgotisch;
+  src: url("Altgotisch.ttf");
+}
+
+.key kbd {
+  font-family: Altgotisch;
+  color: honeydew;
+  font-size: 60px;
+}
